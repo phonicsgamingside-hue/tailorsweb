@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth antialiased">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rahat Tailors | Premium Craftsmanship</title>
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lucide Icons via CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Playfair Display"', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            amber: { 500: '#f59e0b', 600: '#d97706' },
+            zinc: { 50: '#fafafa', 100: '#f4f4f5', 300: '#d4d4d8', 400: '#a1a1aa', 500: '#71717a', 700: '#3f3f46', 800: '#27272a', 900: '#18181b', 950: '#09090b' }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom CSS for Animations -->
+  <style>
+    body { background-color: #09090b; color: #f4f4f5; overflow-x: hidden; }
+    ::selection { background-color: rgba(245, 158, 11, 0.3); }
+    
+    .fade-up { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    
+    .stagger-1 { transition-delay: 100ms; }
+    .stagger-2 { transition-delay: 200ms; }
+    .stagger-3 { transition-delay: 300ms; }
+    
+    #mobile-menu { transition: max-height 0.4s ease-out, opacity 0.4s ease-out; max-height: 0; opacity: 0; }
+    #mobile-menu.open { max-height: 400px; opacity: 1; }
+    
+    #slider-track { transition: transform 0.7s ease-in-out; }
+    
+    /* Progress Bar */
+    .progress-bar-fill { width: 0; transition: width 1.5s ease-out 0.5s; }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 w-full z-50 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <div class="font-serif text-2xl tracking-widest text-amber-500 fade-up">RAHAT TAILORS</div>
+      
+      <!-- Desktop Nav -->
+      <div class="hidden md:flex items-center gap-8 text-sm uppercase tracking-widest text-zinc-400 fade-up stagger-1">
+        <a href="#showroom" class="hover:text-amber-500 transition-colors">Showroom</a>
+        <a href="#about" class="hover:text-amber-500 transition-colors">About</a>
+        <a href="#contact" class="hover:text-amber-500 transition-colors">Contact</a>
+        <a href="https://wa.me/919137213500" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 border border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-zinc-950 px-5 py-2 rounded-full uppercase tracking-widest text-xs font-semibold transition-colors">
+          Contact on WhatsApp
+        </a>
+      </div>
+
+      <!-- Mobile Toggle -->
+      <button id="menu-toggle" class="md:hidden p-2 text-zinc-100 hover:text-amber-500 transition-colors fade-up" aria-label="Toggle Menu">
+        <i id="icon-menu" data-lucide="menu" class="w-7 h-7 block"></i>
+        <i id="icon-close" data-lucide="x" class="w-7 h-7 hidden"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Dropdown -->
+    <div id="mobile-menu" class="md:hidden bg-zinc-950/95 backdrop-blur-xl border-b border-zinc-800 overflow-hidden">
+      <div class="flex flex-col items-center gap-6 py-8 px-6 text-sm uppercase tracking-widest text-zinc-400">
+        <a href="#showroom" class="mobile-link hover:text-amber-500 transition-colors">Showroom</a>
+        <a href="#about" class="mobile-link hover:text-amber-500 transition-colors">About</a>
+        <a href="#contact" class="mobile-link hover:text-amber-500 transition-colors">Contact</a>
+        <a href="https://wa.me/919137213500" target="_blank" rel="noopener noreferrer" class="mobile-link flex items-center gap-2 border border-amber-500 text-amber-500 bg-amber-500/10 px-6 py-3 rounded-full font-semibold transition-colors mt-2">
+          <i data-lucide="message-circle" class="w-4 h-4"></i> Message on WhatsApp
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="about" class="pt-32 pb-20 px-6 max-w-7xl mx-auto min-h-[85vh] flex flex-col justify-center">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <div class="space-y-8 z-10">
+        <div class="inline-flex items-center gap-2 border border-amber-500/30 rounded-full px-4 py-1.5 text-xs tracking-widest text-amber-500 fade-up">
+          <i data-lucide="star" class="w-3 h-3 fill-amber-500"></i>
+          <span>5.0 Star Rated Custom Tailoring</span>
+        </div>
+        <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.1] md:leading-[0.9] font-light text-zinc-50 fade-up stagger-1">
+          Premium <br />
+          <span class="text-amber-500 italic">Craftsmanship</span>
+        </h1>
+        <p class="text-zinc-400 max-w-md text-lg leading-relaxed font-light fade-up stagger-2">
+          Elevate your style with perfect fitting and exclusive designs. Rahat Tailors is the premier destination for bespoke ethnic and formal wear.
+        </p>
+        
+        <!-- Store Information Card -->
+        <div class="bg-zinc-900/50 border border-zinc-800 rounded-3xl p-6 md:p-8 space-y-6 shadow-2xl fade-up stagger-3">
+           <div class="flex items-start gap-4">
+              <i data-lucide="map-pin" class="w-6 h-6 text-amber-500 shrink-0 mt-1"></i>
+              <div>
+                <h3 class="font-semibold text-zinc-100 mb-1">Our Showroom</h3>
+                <p class="text-zinc-400 font-light text-sm leading-relaxed">
+                  B’20 shop, jhumka bhakar, Gate 5 plot, 265,<br />
+                  Mahakali Rd, Malvani, Malad West,<br />
+                  Mumbai - 400095
+                </p>
+              </div>
+           </div>
+           
+           <div class="flex items-center gap-4">
+              <i data-lucide="phone" class="w-6 h-6 text-amber-500 shrink-0"></i>
+              <div>
+                <h3 class="font-semibold text-zinc-100 mb-1">Call Us</h3>
+                <p class="text-zinc-400 font-light text-sm">+91 91372 13500</p>
+              </div>
+           </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4 pt-4 relative z-20 fade-up stagger-3">
+          <a href="https://wa.me/919137213500" target="_blank" rel="noopener noreferrer" class="bg-amber-600 hover:bg-amber-500 text-zinc-950 px-8 py-4 rounded-full flex items-center justify-center gap-2 uppercase tracking-widest text-xs font-semibold transition-colors">
+            <i data-lucide="message-circle" class="w-4 h-4"></i> Message on WhatsApp
+          </a>
+          <a href="tel:+919137213500" class="border border-zinc-700 hover:border-amber-500 hover:text-amber-500 px-8 py-4 rounded-full flex items-center justify-center gap-2 uppercase tracking-widest text-xs font-medium transition-colors">
+            <i data-lucide="phone" class="w-4 h-4"></i> Call Now
+          </a>
+        </div>
+      </div>
+      
+      <!-- Hero Image -->
+      <div class="relative aspect-[3/4] lg:aspect-[4/5] rounded-[2rem] overflow-hidden border border-zinc-800 fade-up stagger-2">
+        <img 
+          src="https://picsum.photos/seed/tailorstorefront/800/1000"
+          alt="Premium Tailoring Showcase"
+          class="w-full h-full object-cover"
+          referrerpolicy="no-referrer"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent opacity-60"></div>
+        
+        <a 
+          href="https://maps.google.com/?q=B’20+shop,+jhumka+bhakar,+Gate+5+plot,+265,+Mahakali+Rd,+Malvani,+Malad+West,+Mumbai" 
+          target="_blank"
+          rel="noopener noreferrer"
+          class="absolute bottom-8 right-8 z-20 bg-zinc-950/80 backdrop-blur-md border border-zinc-800 hover:border-amber-500 rounded-full p-4 flex items-center gap-4 transition-colors group cursor-pointer"
+        >
+          <div class="w-12 h-12 bg-zinc-800 rounded-full flex items-center justify-center group-hover:bg-amber-500 transition-colors">
+            <i data-lucide="navigation" class="w-5 h-5 text-zinc-100 group-hover:text-zinc-950 transition-colors"></i>
+          </div>
+          <div class="pr-4 hidden sm:block">
+            <div class="text-sm font-medium text-zinc-100 group-hover:text-amber-500 transition-colors">Get Directions</div>
+            <div class="text-xs text-zinc-400">Open Google Maps</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Showroom Section -->
+  <section id="showroom" class="py-24 px-6 bg-zinc-900/30 border-t border-zinc-800/50 overflow-hidden">
+    <div class="max-w-7xl mx-auto space-y-16">
+      <div class="text-center space-y-4 max-w-2xl mx-auto fade-up">
+        <h2 class="font-serif text-4xl md:text-5xl font-light">The Masterpiece Gallery</h2>
+        <p class="text-zinc-400 font-light text-lg">
+          A glimpse into our high-end creations. Every stitch tells a story of precision and elegance.
+        </p>
+      </div>
+      
+      <!-- Lookbook Grid (Injected via JS) -->
+      <div id="lookbook-grid" class="grid md:grid-cols-2 gap-6 lg:gap-10"></div>
+      
+      <div class="flex justify-center pt-8 fade-up text-center">
+        <a href="https://wa.me/919137213500?text=Wait,%20I%20would%20like%20to%20discuss%20a%20custom%20design" target="_blank" rel="noopener noreferrer" class="bg-zinc-100 hover:bg-white text-zinc-950 px-8 py-4 rounded-full uppercase tracking-widest text-xs font-semibold transition-colors text-center inline-flex items-center gap-2">
+          <i data-lucide="message-circle" class="w-4 h-4"></i> Discuss Your Design
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="fixed inset-0 z-[100] bg-zinc-950/98 backdrop-blur-xl flex-col items-center justify-center p-4 lg:p-12 hidden">
+    <button class="absolute top-6 right-6 p-4 bg-zinc-900 rounded-full border border-zinc-800 text-zinc-400 hover:text-amber-500 transition-colors z-10" onclick="closeLightbox()">
+      <i data-lucide="x" class="w-6 h-6"></i>
+    </button>
+    <div class="w-full max-w-7xl flex flex-col lg:flex-row h-full max-h-[90vh] gap-8" onclick="event.stopPropagation()">
+      <div class="relative flex-1 rounded-2xl overflow-hidden border border-zinc-800/50 bg-zinc-900 flex items-center justify-center">
+        <img id="lb-img" src="" alt="Design" class="max-w-full max-h-full object-contain" />
+      </div>
+      <div class="w-full lg:w-96 flex flex-col justify-center shrink-0">
+        <h2 id="lb-title" class="font-serif text-3xl md:text-4xl font-light mb-4 text-zinc-100"></h2>
+        <div class="w-12 h-px bg-amber-500/50 mb-6"></div>
+        <p class="text-zinc-400 text-lg font-light leading-relaxed mb-10">
+          <span id="lb-desc"></span> Every element is strictly crafted to measure by Shadab Bhai, ensuring a flawless bespoke experience.
+        </p>
+        <a id="lb-wa" href="#" target="_blank" rel="noopener noreferrer" class="bg-amber-600 hover:bg-amber-500 text-zinc-950 px-8 py-5 rounded-full flex items-center justify-center gap-3 w-full transition-colors uppercase tracking-widest text-xs font-bold">
+           <i data-lucide="message-circle" class="w-5 h-5"></i> Inquire About Design
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Testimonials Section -->
+  <section class="py-24 px-6 overflow-hidden border-t border-zinc-800/50">
+    <div class="max-w-7xl mx-auto space-y-16">
+      <div class="text-center space-y-4 fade-up">
+        <h2 class="font-serif text-4xl md:text-5xl font-light">Client Stories</h2>
+        <p class="text-zinc-400 uppercase tracking-widest text-sm">Our reputation speaks for itself</p>
+      </div>
+      
+      <div class="space-y-16 fade-up stagger-1">
+        <!-- Review Graph -->
+        <div class="max-w-3xl mx-auto bg-zinc-900/40 border border-zinc-800 rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-12">
+          <div class="text-center md:text-left flex-shrink-0">
+            <div class="text-7xl font-serif text-amber-500 mb-3">4.9</div>
+            <div class="flex gap-1 justify-center md:justify-start mb-3" id="main-stars"></div>
+            <div class="text-zinc-400 text-sm tracking-wide uppercase">Based on <span class="font-semibold text-zinc-100">64 reviews</span></div>
+          </div>
+          
+          <div class="flex-1 w-full space-y-3" id="bars-container">
+            <!-- Injected via JS -->
+          </div>
+        </div>
+
+        <!-- Slider -->
+        <div class="relative max-w-4xl mx-auto px-4 md:px-16 pb-8">
+          <div class="overflow-hidden rounded-3xl">
+            <div id="slider-track" class="flex">
+              <!-- Injected via JS -->
+            </div>
+          </div>
+          
+          <!-- Arrows -->
+          <button onclick="prevSlide()" class="absolute left-0 top-1/2 -translate-y-1/2 -ml-2 md:ml-0 p-3 bg-zinc-900 rounded-full border border-zinc-800 hover:border-amber-500 hover:text-amber-500 transition-colors z-10 hidden sm:flex">
+            <i data-lucide="chevron-left" class="w-6 h-6"></i>
+          </button>
+          <button onclick="nextSlide()" class="absolute right-0 top-1/2 -translate-y-1/2 -mr-2 md:mr-0 p-3 bg-zinc-900 rounded-full border border-zinc-800 hover:border-amber-500 hover:text-amber-500 transition-colors z-10 hidden sm:flex">
+            <i data-lucide="chevron-right" class="w-6 h-6"></i>
+          </button>
+
+           <!-- Dots -->
+          <div id="slider-dots" class="flex justify-center gap-2 mt-8 absolute -bottom-6 left-0 right-0">
+            <!-- Injected via JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact" class="bg-zinc-900 pt-24 pb-12 px-6 border-t border-zinc-800">
+    <div class="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-12 mb-16 fade-up">
+      <div class="space-y-6">
+        <div class="font-serif text-2xl tracking-widest text-amber-500">RAHAT TAILORS</div>
+        <p class="text-zinc-400 font-light max-w-sm">
+          Premium custom tailoring studio crafting impeccable bespoke outfits with dedication since 2004.
+        </p>
+        <div class="flex gap-4">
+            <span class="inline-flex items-center gap-1.5 text-zinc-400 text-sm"><i data-lucide="check-circle" class="w-4 h-4 text-amber-500"></i> LGBTQ+ Friendly</span>
+            <span class="inline-flex items-center gap-1.5 text-zinc-400 text-sm"><i data-lucide="check-circle" class="w-4 h-4 text-amber-500"></i> Women-owned</span>
+        </div>
+      </div>
+      <div class="space-y-6 lg:col-span-2">
+        <h3 class="text-sm uppercase tracking-widest font-semibold text-zinc-100">Visit Our Studio</h3>
+        <div class="grid sm:grid-cols-2 gap-8 text-zinc-400 font-light">
+          <div class="flex items-start gap-4">
+            <i data-lucide="map-pin" class="w-5 h-5 text-amber-500 shrink-0 mt-0.5"></i>
+            <p>
+              B’20 shop, jhumka bhakar,<br />
+              Gate 5 plot, 265, Mahakali Rd,<br />
+              Malvani, Malad West,<br />
+              Mumbai - 400095
+            </p>
+          </div>
+          <div class="space-y-4">
+            <div class="flex items-center gap-4">
+              <i data-lucide="phone" class="w-5 h-5 text-amber-500 shrink-0"></i>
+              <p>+91 91372 13500</p>
+            </div>
+            <div class="flex items-center gap-4">
+              <i data-lucide="star" class="w-5 h-5 text-amber-500 shrink-0"></i>
+              <p>5.0 Google Rated Tailor</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto pt-8 border-t border-zinc-800 text-center text-zinc-500 text-sm font-light fade-up">
+      <p>&copy; <span id="year"></span> Rahat Tailors. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp -->
+  <a href="https://wa.me/919137213500?text=Hi%20Shadab%20bhai,%20I%20have%20an%20inquiry%20from%20your%20website" target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 w-14 h-14 bg-green-500 text-white rounded-full flex items-center justify-center shadow-lg hover:-translate-y-1 transition-transform z-50 shadow-green-500/20" title="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" class="w-7 h-7">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.878-.788-1.474-1.761-1.648-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+    </svg>
+  </a>
+
+  <!-- Magic Javascript -->
+  <script>
+    document.getElementById('year').innerText = new Date().getFullYear();
+
+    // Mobile Menu
+    const toggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('mobile-menu');
+    const iconMenu = document.getElementById('icon-menu');
+    const iconClose = document.getElementById('icon-close');
+    let isMenuOpen = false;
+
+    function handleMenu() {
+      isMenuOpen = !isMenuOpen;
+      if (isMenuOpen) {
+        menu.classList.add('open');
+        iconMenu.classList.add('hidden');
+        iconMenu.classList.remove('block');
+        iconClose.classList.add('block');
+        iconClose.classList.remove('hidden');
+      } else {
+        menu.classList.remove('open');
+        iconMenu.classList.add('block');
+        iconMenu.classList.remove('hidden');
+        iconClose.classList.add('hidden');
+        iconClose.classList.remove('block');
+      }
+    }
+    toggle.addEventListener('click', handleMenu);
+    document.querySelectorAll('.mobile-link').forEach(link => link.addEventListener('click', () => { if(isMenuOpen) handleMenu(); }));
+
+    // Lookbook Data
+    const ITEMS = [
+      { id: 1, title: 'Midnight Beaded Motif Suit', desc: 'Bespoke geometric beading pattern with a studded aesthetic on premium dark fabric.', img: './image1.jpeg' },
+      { id: 2, title: 'Royal Red Floral Embroidered Trim', desc: 'Exquisite hand-threaded floral embroidery cascaded over a vibrant silk blend base.', img: './image2.jpeg' },
+      { id: 3, title: 'Golden Eagle Wing Embroidery', desc: 'Meticulous beadwork and scattered studded aesthetics forming an eagle wing on the shoulder.', img: './image3.jpeg' },
+      { id: 4, title: 'Intricate Embellished Crystal Jacket', desc: 'Luxurious heavy lapel detailing and scattered bead placement.', img: './image4.jpeg' },
+      { id: 5, title: 'Precision Embroidery Zari Work', desc: 'Close-up look at our meticulously hand-crafted Zari embroidery patch.', img: './image5.jpeg' }
+    ];
+
+    const lookbookGrid = document.getElementById('lookbook-grid');
+    ITEMS.forEach((item, index) => {
+      lookbookGrid.innerHTML += `
+        <div class="group cursor-pointer flex flex-col fade-up stagger-${(index%2)+1}" onclick="openLightbox(${index})">
+          <div class="relative aspect-[3/4] overflow-hidden rounded-2xl border border-zinc-800/80 mb-6 bg-zinc-900">
+            <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px]">
+              <div class="bg-zinc-950/80 text-white rounded-full p-4 border border-zinc-800 flex items-center gap-2 pr-6">
+                 <i data-lucide="zoom-in" class="w-5 h-5 text-amber-500"></i>
+                 <span class="text-sm font-medium tracking-wide">View Details</span>
+              </div>
+            </div>
+          </div>
+          <div class="flex-1 flex justify-between items-start gap-4">
+            <div>
+              <h3 class="font-serif text-2xl font-light mb-2">${item.title}</h3>
+              <p class="text-sm text-zinc-500 font-light">${item.desc}</p>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+
+    // Lightbox Logic
+    const lb = document.getElementById('lightbox');
+    function openLightbox(index) {
+      const item = ITEMS[index];
+      document.getElementById('lb-img').src = item.img;
+      document.getElementById('lb-title').innerText = item.title;
+      document.getElementById('lb-desc').innerText = item.desc;
+      document.getElementById('lb-wa').href = `https://wa.me/919137213500?text=I'm interested in a design similar to: ${item.title}`;
+      lb.classList.remove('hidden');
+      lb.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+      // simple animation
+      lb.firstElementChild.nextElementSibling.style.transform = 'scale(0.95)';
+      lb.firstElementChild.nextElementSibling.style.opacity = '0';
+      setTimeout(() => {
+         lb.firstElementChild.nextElementSibling.style.transition = 'all 0.3s ease';
+         lb.firstElementChild.nextElementSibling.style.transform = 'scale(1)';
+         lb.firstElementChild.nextElementSibling.style.opacity = '1';
+      }, 10);
+    }
+    function closeLightbox() {
+      lb.classList.add('hidden');
+      lb.classList.remove('flex');
+      document.body.style.overflow = 'auto';
+    }
+    lb.addEventListener('click', closeLightbox); // click outside
+
+    // Testimonials Data
+    const REVIEWS = [
+      { author: "Kahlan Shaikh", text: "Shadab bhai provides unparalleled value. The fit and finish of my short kurtas and pathani are simply stunning. The pricing is very reasonable considering the exceptional quality of the tailoring and construction. Truly the best tailor in Mumbai.", time: "a year ago" },
+      { author: "AQUEEL Shaikh", text: "It was awesome experience with shadab bhai ... The fitting and finishing I found here I did not get anywhere and doesn't matter is it a formal or traditional or occasional...", time: "2 years ago" },
+      { author: "Mohammed Taqi shaikh", text: "All time anytime my fav and my very Azeez...You can Blindly Trust Shadab bhai❤️", time: "a year ago" },
+      { author: "Ayman Pathan", text: "Very nice fitting and finishing", time: "2 months ago" },
+      { author: "Faiz Khan", text: "Excellence in hand", time: "a month ago" },
+      { author: "Shadab Jhari", text: "Nice fiting and best experience", time: "6 months ago" },
+      { author: "Mukit Shaikh", text: "Very kind and humble person. Must visit once for your tailoring needs", time: "a year ago" },
+      { author: "Mohd Shadan", text: "Best finishing.", time: "3 months ago" },
+      { author: "Shahbaz Ansari", text: "💯❤❤", time: "4 months ago" },
+      { author: "Zaiyan Ansari", text: "A tailor sews clothes. He is found in every village and town. No civilized person can do without him. He is a very important member of our society.", time: "3 years ago" }
+    ];
+
+    // Bars Generator
+    const barsContainer = document.getElementById('bars-container');
+    [5, 4, 3, 2, 1].forEach(star => {
+      const w = star === 5 ? 88 : star === 4 ? 8 : star === 3 ? 4 : 0;
+      barsContainer.innerHTML += `
+        <div class="flex items-center gap-4 text-sm font-medium">
+          <div class="w-16 text-zinc-400 shrink-0 flex items-center justify-end gap-2">
+            ${star} <i data-lucide="star" class="w-3 h-3 fill-zinc-500 text-zinc-500"></i>
+          </div>
+          <div class="h-2.5 flex-grow bg-zinc-950 rounded-full overflow-hidden border border-zinc-800/50">
+            <div class="h-full bg-amber-500 rounded-full progress-bar-fill w-0" data-width="${w}%"></div>
+          </div>
+        </div>
+      `;
+    });
+    
+    // Main Stars generator
+    document.getElementById('main-stars').innerHTML = [1,2,3,4,5].map(() => '<i data-lucide="star" class="w-5 h-5 fill-amber-500 text-amber-500"></i>').join('');
+
+    // Slider Generator
+    let currentSlide = 0;
+    const track = document.getElementById('slider-track');
+    const dotsDiv = document.getElementById('slider-dots');
+
+    REVIEWS.forEach((review, i) => {
+      let starsHtml = '';
+      [0,1,2,3,4].forEach(idx => {
+         starsHtml += `<i data-lucide="star" class="w-5 h-5 ${idx < (i === 1 ? 4 : 5) ? 'fill-amber-500 text-amber-500' : 'fill-zinc-800 text-zinc-800'}"></i>`;
+      });
+      track.innerHTML += `
+        <div class="w-full shrink-0 flex items-center justify-center p-2" style="flex: 0 0 100%;">
+          <div class="bg-zinc-950 border border-zinc-800 rounded-[2rem] p-8 md:p-14 w-full relative group">
+            <i data-lucide="quote" class="absolute top-8 right-8 w-16 h-16 text-zinc-800/30 rotate-180"></i>
+            <div class="flex gap-1 mb-6">${starsHtml}</div>
+            <p class="text-zinc-300 font-light leading-relaxed mb-10 text-lg md:text-xl min-h-[140px] md:min-h-[120px] flex items-center">
+              "${review.text}"
+            </p>
+            <div class="flex items-center justify-between border-t border-zinc-800/50 pt-6">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-amber-500 font-serif text-xl border">
+                  ${review.author.charAt(0)}
+                </div>
+                <div>
+                  <div class="font-medium text-zinc-100">${review.author}</div>
+                  <div class="text-xs text-zinc-500 mt-1">Google Review &bull; ${review.time}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+      dotsDiv.innerHTML += `<button onclick="goToSlide(${i})" class="slide-dot h-2 rounded-full transition-all duration-300 ${i === 0 ? 'bg-amber-500 w-8' : 'bg-zinc-700 w-2 hover:bg-zinc-500'}"></button>`;
+    });
+
+    function updateSlider() {
+      track.style.transform = `translateX(-${currentSlide * 100}%)`;
+      document.querySelectorAll('.slide-dot').forEach((dot, i) => {
+        if (i === currentSlide) {
+          dot.classList.add('bg-amber-500', 'w-8'); dot.classList.remove('bg-zinc-700', 'w-2', 'hover:bg-zinc-500');
+        } else {
+          dot.classList.remove('bg-amber-500', 'w-8'); dot.classList.add('bg-zinc-700', 'w-2', 'hover:bg-zinc-500');
+        }
+      });
+    }
+
+    function nextSlide() { currentSlide = (currentSlide + 1) % REVIEWS.length; updateSlider(); }
+    function prevSlide() { currentSlide = currentSlide === 0 ? REVIEWS.length - 1 : currentSlide - 1; updateSlider(); }
+    function goToSlide(n) { currentSlide = n; updateSlider(); }
+    
+    // Auto Slide
+    setInterval(nextSlide, 5000);
+
+    // Initialize Icons since we dynamically injected HTML
+    lucide.createIcons();
+
+    // Scroll Animations (Intersection Observer)
+    const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          
+          // Animate Progress Bars
+          if(entry.target.querySelector('.progress-bar-fill')) {
+             entry.target.querySelectorAll('.progress-bar-fill').forEach(bar => {
+               bar.style.width = bar.getAttribute('data-width');
+             });
+          }
+          
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    
+  </script>
+</body>
+</html>
